@@ -1,4 +1,3 @@
- module.exports = (robot) ->
-   robot.respond /PING$/i, (msg) ->
-     msg.send "PONG"
-    
+  module.exports = (robot) ->
+    robot.hear /showandtell?/i, (res) ->
+      res.send "Omniscience"
