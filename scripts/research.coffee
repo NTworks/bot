@@ -2,15 +2,19 @@ request = require 'request'
 cheerio = require 'cheerio'
 
 module.exports = (robot) ->
-  robot.respond /title (.*)/i, (msg) ->
-   url = msg.match[1]
+  robot.respond /(.*) (.*)/i, (msg) ->
+   exp = msg.match[1]
+   name = msg.match[2]
    options =   
-       url: url
+       url: 'http://www.mtggoldfish.com/price/' + exp + '/' +name
        timeout: 2000
        headers: {'user-agent': 'node title fetcher'}
 
-   console.log request
    request options, (error, response, body) ->
     $ = cheerio.load body
-    rsl $('').forEach.(function(elm){  rsl.push( elm.text().replace(/\n/g, ''))})
+    
+    rsl = []
+    $('.price-card-current-prices').each (i, elm) ->
+        rsl[i] = $(this).text()
+        
     msg.send(rsl)
