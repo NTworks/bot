@@ -1,3 +1,3 @@
   module.exports = (robot) ->
-    robot.hear /showandtell?/i, (res) ->
+    robot.respond /showandtell?/i, (res) ->
       res.send "Omniscience"
