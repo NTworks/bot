@@ -2,17 +2,18 @@ request = require 'request'
 cheerio = require 'cheerio'
 
 module.exports = (robot) ->
-  robot.respond /(.* .*),(.*),(.*)$/i, (msg) ->
+  robot.respond /(.* .*) (.*) (.*)$/i, (msg) ->
    exp = msg.match[1]
    foil = msg.match[2]
    name = msg.match[3]
    console.log msg.match[1]
    console.log msg.match[2]
    console.log msg.match[3]
-   options =   
-       url: 'http://www.mtggoldfish.com/price/' + exp + '/' + ":"foil + '/' +name
+   ###
+   options =
+    url:
+    'http://www.mtggoldfish.com/price/' + exp + '/' + foil + '/' +name
        console.log options
-          ###
        timeout: 2000
        headers: {'user-agent': 'node title fetcher'}
 
